@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ completed: todo.completed }">
+  <li :class="{ completed: todo.completed }" @dblclick="enableEditing" @mouseleave="hideNotesInput">
     <label class="checkbox-wrapper">
       <input type="checkbox" :checked="todo.completed" @change="toggle">
       <span class="checkmark"></span>
@@ -8,6 +8,16 @@
     <div class="button-container">
       <button @click="deleteItem">删除</button>
     </div>
+
+    <!-- 备注显示 -->
+    <div v-if="todo.notes" class="notes">
+      <strong>备注:</strong> {{ todo.notes }}
+    </div>
+
+    <!-- 备注编辑框 -->
+    <div v-if="isEditing" class="notes-input" @mouseenter="isEditing = true" @mouseleave="hideNotesInput">
+      <input v-model="tempNotes" @blur="saveNotes" placeholder="添加备注..." />
+    </div>
   </li>
 </template>
 
@@ -15,12 +25,29 @@
 export default {
   name: 'TodoItem',
   props: ['todo'],
+  data() {
+    return {
+      isEditing: false,
+      tempNotes: this.todo.notes
+    };
+  },
   methods: {
     deleteItem() {
       this.$emit('delete', this.todo.id);
     },
     toggle() {
       this.$emit('toggle', this.todo.id);
+    },
+    enableEditing() {
+      this.isEditing = true;
+      this.tempNotes = this.todo.notes;
+    },
+    hideNotesInput() {
+      this.isEditing = false;
+    },
+    saveNotes() {
+      this.isEditing = false;
+      this.$emit('update-notes', this.todo.id, this.tempNotes);
     }
   }
 };
@@ -28,6 +55,7 @@ export default {
 
 <style scoped>
 li {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 15px 20px;
@@ -157,5 +185,45 @@ button:active {
 
 .app-container.dark button:hover {
   background-color: #c12720;
+}
+
+.notes {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 12px;
+  color: #555;
+}
+
+.app-container.dark .notes {
+  color: #a1a1a6;
+}
+
+.notes-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(240, 240, 240, 0.95);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app-container.dark .notes-input {
+  background: rgba(44, 44, 46, 0.95);
+}
+
+.notes-input input {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.app-container.dark .notes-input input {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
 }
 </style>
