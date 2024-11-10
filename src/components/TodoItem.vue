@@ -1,10 +1,14 @@
 <template>
   <li :class="{ completed: todo.completed }">
-    <label>
+    <div class="checkbox-container">
       <input type="checkbox" :checked="todo.completed" @change="toggle">
+    </div>
+    <div class="text-container">
       <span>{{ todo.text }}</span>
-    </label>
-    <button @click="deleteItem">删除</button>
+    </div>
+    <div class="button-container">
+      <button @click="deleteItem">删除</button>
+    </div>
   </li>
 </template>
 
@@ -28,44 +32,65 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  border-bottom: 1px solid #ddd;
-  background-color: white;
-  transition: background-color 0.3s;
+  padding: 15px 20px;
+  border-bottom: 1px solid #d1d1d6;
+  background-color: #ffffff;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 li:hover {
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
+  transform: translateY(-2px);
 }
 
 .completed span {
   text-decoration: line-through;
-  color: gray;
+  color: #8e8e93;
 }
 
-label {
+.checkbox-container {
+  flex: 0 0 30px; /* 固定宽度，确保所有复选框对齐 */
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-grow: 1;
+}
+
+.text-container {
+  flex: 1; /* 文本部分占据剩余空间 */
+  padding: 0 10px; /* 为文本添加左右内边距，防止与复选框和按钮紧贴 */
+  text-align: left;
+}
+
+.button-container {
+  flex: 0 0 80px; /* 固定宽度，确保删除按钮对齐 */
+  display: flex;
+  justify-content: flex-end;
 }
 
 input[type="checkbox"] {
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  accent-color: #007aff; /* iOS 风格的蓝色勾选框 */
 }
 
 button {
-  background-color: #e74c3c;
+  background-color: #ff3b30;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 8px 14px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 14px;
 }
 
 button:hover {
-  background-color: #c0392b;
+  background-color: #c12720;
+}
+
+button:active {
+  transform: scale(0.95);
 }
 </style>

@@ -100,19 +100,23 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=San+Francisco:wght@400;600&display=swap');
+
 #app {
   max-width: 600px;
   margin: 50px auto;
   text-align: center;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+  padding: 20px 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  color: #333;
+  color: #1c1c1e;
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
 .input-section {
@@ -122,46 +126,62 @@ h1 {
 }
 
 input {
-  width: 70%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: border-color 0.3s;
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #d1d1d6;
+  border-radius: 15px;
+  font-size: 16px;
+  background-color: #f2f2f7;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-  border-color: #5dade2;
+  border-color: #007aff;
+  box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
   outline: none;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   margin-left: 10px;
-  background-color: #5dade2;
+  background-color: #007aff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-  background-color: #3498db;
+  background-color: #0051a8;
 }
 
 .filters {
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
 .filters button {
   margin: 0 5px;
-  background-color: #e7e7e7;
-  color: #333;
+  background-color: #f2f2f7;
+  color: #1c1c1e;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
 }
 
 .filters button.active {
-  background-color: #5dade2;
+  background-color: #007aff;
   color: white;
+}
+
+.filters button:hover:not(.active) {
+  background-color: #e5e5ea;
 }
 
 ul {
@@ -171,12 +191,12 @@ ul {
 }
 
 .list-enter-active, .list-leave-active {
-  transition: all 0.5s;
+  transition: all 0.3s ease;
 }
 
 .list-enter-from, .list-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-10px);
 }
 
 .clear-completed {
@@ -184,10 +204,11 @@ ul {
 }
 
 .clear-completed button {
-  background-color: #e74c3c;
+  background-color: #ff3b30;
 }
 
 .clear-completed button:hover {
-  background-color: #c0392b;
+  background-color: #c12720;
 }
 </style>
+
