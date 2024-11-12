@@ -28,7 +28,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.theme-toggle {
+/* .theme-toggle {
   text-align: right;
   margin-bottom: 10px;
 }
@@ -38,8 +38,9 @@ h1 {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  color: inherit;
+  color: inherit; 
 }
+这里字体的颜色是继承，就和Todolist的字体颜色一样了 */
 
 .input-section {
   display: flex;

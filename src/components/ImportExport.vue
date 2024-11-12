@@ -18,7 +18,8 @@
         if (!file) return;
   
         const reader = new FileReader();
-        reader.onload = (e) => {
+        //FileReader 是一个用于读取文件内容的异步 API，可以读取文件为文本、数据 URL 或二进制等。
+        reader.onload = (e) => { //文件读取成功后触发的事件处理函数
           try {
             const importedTodos = JSON.parse(e.target.result);
             if (Array.isArray(importedTodos)) {
@@ -31,21 +32,23 @@
           } catch (error) {
             alert('导入失败：' + error.message);
           }
-        };
-        reader.readAsText(file);
+        }; 
+        reader.readAsText(file);  // 这个执行完之后才会触发reader.onload函数执行
         // 重置文件输入
         event.target.value = '';
       }
     }
+    //  这里面的event e  事件对象 需要重点理解一下
   };
-  </script>
+</script>
+  
   
 <style scoped>
   .import-export {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
   }
   
   .import-export button,
@@ -76,5 +79,13 @@
   .import-export input[type="file"] {
     display: none;
   }
+
+  .app-container.dark button{
+    background-color: #ff9500;
+  }
+  .app-container.dark .import-button{
+    background-color: #28a745;
+  }
+  
   </style>
   

@@ -2,17 +2,18 @@
   <div :class="['app-container', theme]">
     <h1>Todo                List</h1>
 
-
     <!-- 导入导出组件 -->
     <ImportExport @export-todos="exportTodos" @import-todos="handleImportTodos" />
     <!-- 每日一言组件 -->
     <DailyQuote />
 
-    <div class="theme-toggle">
+    <ThemeChange :theme="theme" @update-theme="handleToggleTheme" />
+    <!-- 修改为单独的一个组件   组件名字  动态属性  监听子组件的处理函数 -->
+    <!-- <div class="theme-toggle">
       <button @click="toggleTheme">
         {{ theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode' }}
       </button>
-    </div>
+    </div> -->
 
     
 
@@ -69,16 +70,19 @@
 import TodoItem from './components/TodoItem.vue';
 import DailyQuote from './components/DailyQuote.vue';
 import ImportExport from './components/ImportExport.vue';
+import ThemeChange from "./components/ThemeChange.vue"; // 引入组件
 import './css/App.css'; // 导入外部CSS
+
 
 export default {
   name: 'App',
   components: {
     TodoItem,
     DailyQuote,
-    ImportExport
+    ImportExport,
+    ThemeChange
   },
-  data() {
+  data() { //创建每个实例的时候，就会自动执行data()函数，然后得到一份数据的示例
     return {
       newTodo: '',
       todos: [],
@@ -162,6 +166,11 @@ export default {
       a.click();
       URL.revokeObjectURL(url);
     },
+
+    handleToggleTheme(newTheme){
+      this.theme = newTheme;
+    },
+
     handleImportTodos(importedTodos) {
       // 验证导入的todos格式
       if (Array.isArray(importedTodos)) {
@@ -190,7 +199,9 @@ export default {
       }
     }
   },
-  watch: {
+  watch: {  
+    //这个的主要功能就是持久或存储  保存在浏览器中，即使刷新也没事
+    //  被监听得数据：   hander这个名字只是一个习惯，可以使用其他名字，save,dd这样子都可以使用 （）就还是正常的函数参数
     todos: {
       handler(todos) {
         // 将todos保存到本地存储

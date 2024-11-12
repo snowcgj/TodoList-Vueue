@@ -42,9 +42,16 @@
     transition: color 0.3s, border-left-color 0.3s;
   }
   
-  .app-container.dark .daily-quote {
+  
+  .app-container.dark    .daily-quote {
     color: #a1a1a6;
-    border-left: 4px solid #0a84ff;
+    border-left: 4px solid #0fe0e4;
   }
+
+  /* ，
+  当 .daily-quote 组件位于一个具有 .app-container 和 .dark 类的父元素中时，应用特定的样式。这通常用于实现暗黑模式（Dark Mode）或主题切换功能，使得在不同的主题下，组件的外观有所变化。 
+  设置css主题时  用这个
+  */
+
   </style>
   
