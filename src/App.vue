@@ -1,5 +1,12 @@
 <template>
+
+  <!-- 使用 Iconify 的 Icon 组件 -->
+  <Icon icon="mdi:account" width="32" height="32" color="blue" />
+
+
   <div :class="['app-container', theme]">
+
+    
     <h1>Todo                List</h1>
 
     <!-- 导入导出组件 -->
@@ -66,12 +73,14 @@
   </div>
 </template>
 
-<script>
+<script >
+import {Icon} from '@iconify/vue';
 import TodoItem from './components/TodoItem.vue';
 import DailyQuote from './components/DailyQuote.vue';
 import ImportExport from './components/ImportExport.vue';
 import ThemeChange from "./components/ThemeChange.vue"; // 引入组件
 import './css/App.css'; // 导入外部CSS
+
 
 
 export default {
@@ -80,7 +89,8 @@ export default {
     TodoItem,
     DailyQuote,
     ImportExport,
-    ThemeChange
+    ThemeChange,
+    Icon
   },
   data() { //创建每个实例的时候，就会自动执行data()函数，然后得到一份数据的示例
     return {

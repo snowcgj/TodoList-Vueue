@@ -2,7 +2,7 @@
     <div class="daily-quote">
       <p>{{ quote }}</p>
     </div>
-  </template>
+</template>
   
   <script>
   export default {
