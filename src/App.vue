@@ -4,8 +4,8 @@
 
     <!-- 导入导出组件 -->
     <ImportExport @export-todos="exportTodos" @import-todos="handleImportTodos" />
-    <!-- 每日一言组件 -->
-    <DailyQuote />
+    <!-- 每日一言组件    -->
+    <DailyQuote />        
 
     <ThemeChange :theme="theme" @update-theme="handleToggleTheme" />
     <!-- 修改为单独的一个组件   组件名字  动态属性  监听子组件的处理函数 -->
